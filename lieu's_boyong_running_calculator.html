@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel = 'stylesheet' type = 'text/css' href = 'style.css'>
 	<link rel="stylesheet" media="(min-width:601px)" href="style_big.css">
-</head>
+	<link href='http://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
 
 <body>
 	<script>
@@ -16,6 +16,10 @@
 			calculateKMTime();
 			calculateSpeed();
 			calculateRoundTime();
+			calculateRoundNo();
+
+			document.getElementById('user_input').style.display = 'none';
+			document.getElementById('stats_header').innerHTML = NAME + "'s" + ' Stats';
 		}
 
 		function getData() {
@@ -27,6 +31,7 @@
 			temp2 = document.getElementById('time_taken_min').value;
 			temp3 = document.getElementById('time_taken_sec').value;
 			temp4 = document.getElementById('track_length').value;
+			temp5 = document.getElementById('name').value;
 
 			// Best practices to do nice nice strict typing!!
 
@@ -34,6 +39,7 @@
 			TIME_TAKEN_MIN = Number(temp2);
 			TIME_TAKEN_SEC = Number(temp3);
 			TRACK_LENGTH = Number(temp4);
+			NAME = temp5;
 
 			//For ease of calculation:
 
@@ -65,6 +71,11 @@
 			document.getElementById('round_time').innerHTML += (MIN + ' min ' + SEC + ' sec');
 		}
 
+		function calculateRoundNo(){
+			var roundNo = (DISTANCE_RAN * 1000/TRACK_LENGTH).toFixed(2);
+			document.getElementById('round_count').innerHTML += (roundNo + " rounds");
+		}
+
 		function convertToMinSec(time){
 
 			MIN = Math.floor(time / 60);
@@ -79,10 +90,10 @@
 		<h1> Lieu's Boyong Running Calculator </h1>
 
 		<form>
-		<h2> How far did you run ? </h2>
+		<h2> How far did you run/are you running ? </h2>
 		<input id = 'distance_ran' type = 'number' min = '0' placeholder = '2.4'> km
 
-		<h2> How long did you take? </h2>
+		<h2> Time taken/goal time? </h2>
 		<input id = 'time_taken_min' type = 'number' min = '0' placeholder = '5'> min
 		<input id = 'time_taken_sec' type = 'number' min = '0' placeholder = '45'> sec
 
@@ -90,7 +101,7 @@
 		<input id = 'track_length' type = 'number' min = '0' placeholder = '400'> m
 
 		<h2> What is your name ? </h2>
-		<input id = 'text' placeholder = 'Justine'>
+		<input id = 'name' placeholder = 'Justine'>
 
 		<br>
 		<br>
@@ -101,12 +112,15 @@
 	</section>
 
 	<section id = 'user_stats'>
-		<h2> Your Stats </h2>
+		<h2 id = 'stats_header'> Your Stats </h2>
 
-		<h3 id = "km_time"> How long it takes you to run 1 km: </h3>
+		<h3 id = "km_time"> Time taken to run 1 km: </h3>
 		<h3 id = 'running_speed_km'> Your speed, in km/h: </h3>
 		<h3 id = 'running_speed_m'> Your speed, in m/s: </h3>		
-		<h3 id = 'round_time'> Your average time taken per round: </h3>
+		<h3 id = 'round_time'> Your average time per round: </h3>
+		<h3 id = 'round_count'> How many rounds you ran/should run: </h3>
+
+		<input type = 'button' value = 'Try different values...' onclick = 'window.location.reload()'>
 
 	</section>
 
