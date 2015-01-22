@@ -1,0 +1,28 @@
+html,body {
+	padding:0;
+	margin:0;
+	font-family: 'Raleway', sans-serif;
+}
+
+#user_input, #user_stats {
+	width: 100%;
+	margin: auto;
+}
+
+h1 {
+	font-size: 3em;
+}
+
+h2 {
+	font-size: 2em;
+}
+
+h3 {
+	font-size: 1.5em;
+	font-weight: 300;
+}
+
+input {
+	height: 50px;
+	font-size:1.5em;
+}
