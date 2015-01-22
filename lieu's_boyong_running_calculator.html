@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+	<title> Lieu's Boyong Running Calculator </title>
+	<link>
+</head>
+
+<body>
+	<script>
+
+		function calculateEverything(){
+			getData();
+			calculateKMTime();
+			calculateSpeed();
+			calculateRoundTime();
+		}
+
+		function getData() {
+			//Let's get some global variables!! 
+			/* According to Douglas Crockford's coding conventions, global variables
+			should be uppercased */
+
+			temp1 = document.getElementById('distance_ran').value;
+			temp2 = document.getElementById('time_taken_min').value;
+			temp3 = document.getElementById('time_taken_sec').value;
+			temp4 = document.getElementById('track_length').value;
+
+			// Best practices to do nice nice strict typing!!
+
+			DISTANCE_RAN = Number(temp1);
+			TIME_TAKEN_MIN = Number(temp2);
+			TIME_TAKEN_SEC = Number(temp3);
+			TRACK_LENGTH = Number(temp4);
+
+			//For ease of calculation:
+
+			TIME_TAKEN = ((TIME_TAKEN_MIN * 60) + TIME_TAKEN_SEC);
+		}
+
+		function calculateKMTime() {
+			var kmTimeInSeconds =  (TIME_TAKEN / DISTANCE_RAN);
+			convertToMinSec(kmTimeInSeconds);
+			document.getElementById('km_time').innerHTML += (MIN + ' min ' + SEC + ' sec');
+		}
+
+		function calculateSpeed() {
+			//Find the km/second
+			var kmPerSecond = (DISTANCE_RAN/TIME_TAKEN);
+			//km per hour
+			var kmPerHour =  (kmPerSecond * 3600).toFixed(3);
+			var mPerSecond = (kmPerSecond * 1000).toFixed(2);
+			document.getElementById('running_speed_km').innerHTML += (kmPerHour + " km/h");
+			document.getElementById('running_speed_m').innerHTML += (mPerSecond + " m/s");			
+		}
+
+		function calculateRoundTime(){
+			/* First we find the time taken per KM,
+			then afterwards we find the time taken per ROUND */
+
+			var perRoundTime = ((TIME_TAKEN/DISTANCE_RAN) * (TRACK_LENGTH/1000));
+			convertToMinSec(perRoundTime);
+			document.getElementById('round_time').innerHTML += (MIN + ' min ' + SEC + ' sec');
+		}
+
+		function convertToMinSec(time){
+
+			MIN = Math.floor(time / 60);
+			SEC = (time % 60).toFixed(1);
+
+		}
+
+	</script>
+
+	<section>
+
+		<h1> Lieu's Boyong Running Calculator </h1>
+
+		<form>
+		<h2> How far did you run ? </h2>
+		<input id = 'distance_ran' type = 'number' min = '0' placeholder = '2.4'> km
+
+		<h2> How long did you take? </h2>
+		<input id = 'time_taken_min' type = 'number' min = '0' placeholder = '5'> min
+		<input id = 'time_taken_sec' type = 'number' min = '0' placeholder = '45'> sec
+
+		<h2> What is the length of one round of the track? </h2>
+		<input id = 'track_length' type = 'number' min = '0' placeholder = '400'> m
+
+		<h2> What is your name ? </h2>
+		<input id = 'text' placeholder = 'Justine'>
+
+		<br>
+		<br>
+
+		<input type = 'button' value = 'Submit' onclick = 'calculateEverything();'>
+	</form>
+
+	</section>
+
+	<section>
+		<h2> Your Stats </h2>
+
+		<h3 id = "km_time"> How long it takes you to run 1 km: </h3>
+		<h3 id = 'running_speed_km'> Your speed, in km/h: </h3>
+		<h3 id = 'running_speed_m'> Your speed, in m/s: </h3>		
+		<h3 id = 'round_time'> Your average time taken per round: </h3>
+
+	</section>
+
+</body>
+</html>
