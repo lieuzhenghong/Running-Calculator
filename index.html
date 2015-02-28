@@ -17,10 +17,12 @@
 		function calculateEverything(){
 			getData();
 			calculateKMTime();
+			calculate24Time();
 			calculateSpeed();
 			calculateRoundTime();
 			calculateRoundNo();
-			calculateScore(TIME_TAKEN);
+			calculateScore(TIME_TAKEN_24);
+
 
 			document.getElementById('user_input').style.display = 'none';
 			document.getElementById('user_stats').style.display = 'block';
@@ -44,6 +46,8 @@
 			TIME_TAKEN_MIN = Number(temp2);
 			TIME_TAKEN_SEC = Number(temp3);
 			TRACK_LENGTH = Number(temp4);
+			TIME_TAKEN_24 = 0;
+
 			NAME = temp5;
 
 			//For ease of calculation:
@@ -76,6 +80,14 @@
 			var kmTimeInSeconds =  (TIME_TAKEN / DISTANCE_RAN);
 			convertToMinSec(kmTimeInSeconds);
 			document.getElementById('km_time').innerHTML += (MIN + ' min ' + SEC + ' sec');
+		}
+
+		function calculate24Time() {
+			var kmTimeInSeconds =  ((TIME_TAKEN / DISTANCE_RAN)*2.4);
+			convertToMinSec(kmTimeInSeconds);
+			TIME_TAKEN_24 = kmTimeInSeconds;
+			console.log(TIME_TAKEN_24); 
+			document.getElementById('2.4_time').innerHTML += (MIN + ' min ' + SEC + ' sec');
 		}
 
 		function calculateSpeed() {
@@ -143,10 +155,11 @@
 
 		<h3 id = 'ippt_score'> Your IPPT score: </h3>
 		<h3 id = "km_time"> Time taken to run 1 km: </h3>
+		<h3 id = "2.4_time"> 2.4km timing:</h3>
 		<h3 id = 'running_speed_km'> Your speed, in km/h: </h3>
 		<h3 id = 'running_speed_m'> Your speed, in m/s: </h3>		
 		<h3 id = 'round_time'> Your average time per round: </h3>
-		<h3 id = 'round_count'> How many rounds you ran/should run: </h3>
+		<h3 id = 'round_count'> How many rounds you ran: </h3>
 
 
 		<input type = 'button' value = 'Try different values...' onclick = 'window.location.reload()'>
