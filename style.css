@@ -1,4 +1,4 @@
-html {
+* {
 	padding:0;
 	margin:0;
 	font-family: 'Raleway', sans-serif;
@@ -10,20 +10,25 @@ body {
 
 h1 {
 	font-size: 2em;
+	margin: 25px 0 40px 0;
 }
 
 h2 {
 	font-size: 1.5em;
+	margin: 25px 0 25px 0;
 }
 
 h3 {
-	font-size: 1.5em;
+	margin: 25px 0 25px 0;
 	font-weight: 300;
+	line-height: 1.5;
 }
 
 input {
 	height: 50px;
 	font-size:1.5em;
+	width: 90%;
+	max-width: 250px;
 }
 
 #user_stats {
