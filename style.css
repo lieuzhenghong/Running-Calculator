@@ -6,16 +6,10 @@ html {
 
 body {
 	padding-left: 40px;
-	padding-right: 40px;
-}
-
-#user_input, #user_stats {
-	width: 100%;
-	margin: auto;
 }
 
 h1 {
-	font-size: 3em;
+	font-size: 2em;
 }
 
 h2 {
