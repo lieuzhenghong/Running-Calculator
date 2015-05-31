@@ -1,0 +1,17 @@
+{
+  "name": "Running Calculator",
+  "description": "Calculate your pace, time per round, and other useful calculations.",
+  "version": "0.1",
+  "manifest_version": 2,
+  "app": {
+
+    "background": {
+      "scripts": [
+        "background.js" 
+        ]
+    }
+  },
+
+
+  "icons": {"512": "running.png" }
+}
